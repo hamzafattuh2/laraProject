@@ -1,0 +1,10 @@
+css public/css app and common and style .css
+css views/css  style.css 1file 
+view/admin.blade.php
+view/layouts/app.blade.php 
+
+MIGRATE 
+2017_11_04_115812_create_bills_table.php
+2017_11_03_101212_add_id_adddr_field_to_users_table.php
+2017_11_02_153834_create_admins_table.php
+2014_10_12_100000_create_password_resets_table.php
