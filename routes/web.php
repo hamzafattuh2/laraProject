@@ -18,8 +18,8 @@ Route::get('/hamza',   [HamzaController::class,'index'])->name('show');
 
 // Route::get('/aaa',   [HamzaController::class,'aaa'])->name('aaa');
 Route::get('/admin',[billController::class, 'index'])->name('admin.index');
-Route::post('/admin/store',[billController::class, 'store'])->name('admin.store');
+Route::post('/admin/store',[billController::class, 'store1'])->name('admin.store');
 Route::post('/admin/updaterate',[billController::class, 'updaterate'])->name('admin.updaterate');
-Route::get('/admin', [billController::class, 'index'])->name('admin.dashboard');
+Route::get('/admin', [billController::class, 'index'])->name('admin.dashboard');//SHOW ADMIN PAGE
 Route::post('/user', [UserController::class, 'store'])->name('user.store');
 Route::get('/user', [UserController::class, 'index'])->name('user.index');

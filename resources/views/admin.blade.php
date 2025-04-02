@@ -106,18 +106,11 @@
 
                         </fieldset>
                         </form>
-
-<h1>dasdasdsad</h1>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
-{{-- <form class="form-inline" action="
+                        <form class="form-inline" action="
 {{ route('admin.updaterate') }}
  " method="POST">
-    {{ csrf_field() }}
+    {{-- {{ csrf_field() }} --}}
+    @csrf
 
     <fieldset>
 
@@ -125,7 +118,7 @@
     <legend>Update Rate</legend>
     <p class="current">Current Rate = <span>
         {{-- {{ Auth::user()->rate }} --}}
-    {{-- </span></p>
+     </span></p>
 
     <!-- Text input-->
     <div class="form-group">
@@ -143,4 +136,13 @@
     </div>
 
     </fieldset>
-</form> --}}
+</form>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

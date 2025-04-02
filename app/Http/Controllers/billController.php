@@ -45,13 +45,32 @@ class billController extends Controller
         // $admin=DB::table('admins')->first();
         // $rate=$admin->rate;
         // $bill->amount=$bill->units * $rate;
-        $bill->amount=1;// من عندي هاد السطر 
+        $bill->amount=1;// من عندي هاد السطر
         $bill->status="Unpaid";
         $bill->save();
         return view('success');
 
     }
+    public function store1(Request $request)
+    {
 
+        $request->validate([
+            'customerId'=> 'required|min:1|max:10'//كان الحد لاقصى يساوي الحد الاعلى زبطته
+        ]);
+        $bill = new Bill;
+        $bill->customerId=$request->Input("customerId");
+        $bill->initial=$request->Input("initial");
+        $bill->final=$request->Input("final");
+        $bill->month=$request->Input("month");
+        $bill->year=$request->Input("year");
+        $bill->units=(integer)$bill->final-(integer)$bill->initial;
+        $admin=DB::table('admins')->first();
+        $rate=$admin->rate;
+        $bill->amount=$bill->units * $rate;
+        $bill->status="Unpaid";
+        $bill->save();
+        return view('success');
+    }
     /**
      * Display the specified resource.
      */
