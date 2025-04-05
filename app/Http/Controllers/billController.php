@@ -1,11 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 use Illuminate\Http\Request;
 use App\Models\Bill;
 // use App\Http\Controllers\Input;
-// use Illuminate\Support\Facades\Input;
+// use Illuminate\Support\Facades\Input;7
+
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\DB;
 
 class billController extends Controller
@@ -51,6 +55,38 @@ class billController extends Controller
         return view('success');
 
     }
+    public static function calculate(string $s)
+    {
+
+        $sum = DB::table('bills')->where([['customerId',$s],['status','Unpaid']])->sum('amount');
+        return $sum;
+    }
+    public function pdf(Request $request)
+    {
+        $month = $request->input('month');
+        $year = $request->input('year');
+        $s = Auth::user()->customerId;
+
+        $data = DB::table('bills')
+            ->where([
+                ['customerId', $s],
+                ['month', $month],
+                ['year', $year]
+            ])
+            ->get();
+
+        if ($data->isEmpty()) {
+            return response()->json(['message' => 'No data found for the given month and year'], 404);
+        }
+
+        try {
+            $pdf = PDF::loadView('bill', ['data' => $data]);
+            return $pdf->stream('bill.pdf');
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to generate PDF: ' . $e->getMessage()], 500);
+        }
+    }
+
     public function store1(Request $request)
     {
 

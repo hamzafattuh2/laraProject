@@ -7,19 +7,22 @@ use Illuminate\Http\Request;
 use App\Models\User;
 class HamzaController extends Controller
 {
-    public function index(){
+    public function index()
+    {
 
-$users=User::all();
-return $users ;
+        $users = User::all();
+        return $users;
     }
 
-    public function admin(){
+    public function admin()
+    {
 
-      return "222";
-    //   view('admin');
-            }
-            public function aaa(){
+        return "222";
+        //   view('admin');
+    }
+    public function bill()
+    {
 
-                return view('admin');
-                      }
+        return view('bill');
+    }
 }
